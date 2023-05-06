@@ -1,18 +1,25 @@
 package com.example.project.Adapter;
 
+<<<<<<< HEAD
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
+=======
+>>>>>>> origin/master
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+<<<<<<< HEAD
 import android.widget.Toast;
+=======
+>>>>>>> origin/master
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+<<<<<<< HEAD
 import com.example.project.Constants.MyConstants;
 import com.example.project.Database.RoomDB;
 import com.example.project.Models.Items;
@@ -52,10 +59,20 @@ public class CheckListAdapter extends  RecyclerView.Adapter<CheckListViewHolder>
     @Override
     public CheckListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new CheckListViewHolder(LayoutInflater.from(context).inflate(R.layout.check_list_item,parent,false));
+=======
+import com.example.project.R;
+
+public class CheckListAdapter extends  RecyclerView.Adapter<CheckListViewHolder>{
+    @NonNull
+    @Override
+    public CheckListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return null;
+>>>>>>> origin/master
     }
 
     @Override
     public void onBindViewHolder(@NonNull CheckListViewHolder holder, int position) {
+<<<<<<< HEAD
 //set the name by the position from objects
         holder.checkBox.setText(itemsList.get(position).getItemname());
         holder.checkBox.setChecked(itemsList.get(position).getChecked());
@@ -75,6 +92,14 @@ public class CheckListAdapter extends  RecyclerView.Adapter<CheckListViewHolder>
     @Override
     public int getItemCount() {
         return itemsList.size();
+=======
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
+>>>>>>> origin/master
     }
 }
 
