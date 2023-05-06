@@ -1,6 +1,9 @@
 package com.example.project.Adapter;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +70,62 @@ public class CheckListAdapter extends  RecyclerView.Adapter<CheckListViewHolder>
             } else{
                 holder.layout.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_one));
         }}
+
+      holder.checkBox.setOnClickListener(new View.OnClickListener(){
+
+          @Override
+          public void onClick(View view){
+              Boolean check = holder.checkBox.isChecked();
+              database.mainDao().checkUncheck(itemsList.get(position).getID(),check);
+
+              if (MyConstants.FALSE_STRING.equals(show)) {
+itemsList = database.mainDao().getAllSelected(true);
+notifyDataSetChanged();
+
+
+
+              }else {
+                  itemsList.get(position).setChecked(check);
+                  notifyDataSetChanged();
+                  Toast tosMessage =  null ;
+                  if (tosMessage!=null){
+                      tosMessage.cancel();
+                  }
+                  if (itemsList.get(position).getChecked()){
+                      tosMessage =Toast.makeText(context , "("+holder.checkBox.getText()+") packed ",Toast.LENGTH_SHORT );
+                  }else {
+                      tosMessage = Toast.makeText(context , "("+holder.checkBox.getText()+")unpacked ",Toast.LENGTH_SHORT );
+                  }
+
+                  tosMessage.show();
+              }
+
+          }
+      } );
+
+
+        holder.btnDelete.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+
+            public void onClick(View view ){
+                new AlertDialog.Builder(context).setTitle("delete(" + itemsList.get(position).getItemname()+")")
+                        .setMessage("mota2aked ya zmely ??!").setPositiveButton("confirm", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+database.mainDao().delete(itemsList.get(position));
+notifyDataSetChanged();
+                            }
+                        }).setPositiveButton("cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+Toast.makeText(context , "cancelled" , Toast.LENGTH_SHORT).show();
+                            }
+                        }).setIcon(R.drawable.baseline_delete_forever_24).show();
+            }
+        });
+
+
     }
 
 
