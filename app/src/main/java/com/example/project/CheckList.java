@@ -51,7 +51,7 @@ public class CheckList extends AppCompatActivity {
 
         getSupportActionBar().setTitle(header);
 
-        editText.findViewById(R.id.edit_text);
+//        editText.findViewById(R.id.edit_text);
         btn = findViewById(R.id.btn_add);
         recyclerView = findViewById(R.id.recyclerView);
         linearLayout = findViewById(R.id.linerLayout);
@@ -71,7 +71,7 @@ public class CheckList extends AppCompatActivity {
 
 
 
-private void addedNewItem(String itemName){
+    private void addedNewItem(String itemName){
 
         Items item = new Items();
     item.setChecked(false);
@@ -85,10 +85,10 @@ private void addedNewItem(String itemName){
 
 
 }
-     private void updateRecycle(List<Items>itemList){
+     private void updateRecycle(List<Items>itemsList){
       recyclerView.setHasFixedSize(true);
       recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1 , LinearLayoutManager.VERTICAL));
-      checkListAdapter = new CheckListAdapter(CheckList.this , itemList, database , show);
+      checkListAdapter = new CheckListAdapter(CheckList.this , itemsList, database , show);
       recyclerView.setAdapter(checkListAdapter);
      }
 
