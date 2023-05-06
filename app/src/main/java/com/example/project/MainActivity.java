@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
@@ -18,6 +21,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+
+
+
+
+
+//    ************** BroadCast *************************
+
+BroadcastReceiver broadcastReceiver = null;
+
+//    ************** BroadCast *************************
+
+
 
     RecyclerView recyclerView;
     List<String> titles;
@@ -44,7 +60,30 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2 ,GridLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);
+
+//    ************************************** BroadCast *************************
+
+broadcastReceiver = new  InternetReciver();
+
+InternerStatus();
+
+//    ************************************** BroadCast *************************
+
+
+
     }
+
+    //    ************************************** BroadCast *************************
+    public  void  InternerStatus(){
+        registerReceiver(broadcastReceiver,new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+    protected void onPause(){
+        super.onPause();
+        unregisterReceiver(broadcastReceiver);
+    }
+
+
+    //    **************************************** BroadCast *************************
 
     //are you want to exit message
     private static final int TIME_INTERVAL = 2000;
