@@ -51,7 +51,7 @@ public class CheckList extends AppCompatActivity {
 
         getSupportActionBar().setTitle(header);
 
-        editText.findViewById(R.id.txtAdd);
+//        editText.findViewById(R.id.txtAdd);
         btnAdd = findViewById(R.id.btnAdd);
         recyclerView = findViewById(R.id.recyclerView);
         linearLayout = findViewById(R.id.linerLayout);

@@ -5,11 +5,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.BroadcastReceiver;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.project.Adapter.Adapter;
@@ -34,16 +38,29 @@ BroadcastReceiver broadcastReceiver = null;
 //    ************** BroadCast *************************
 
 
-
+    ImageButton imageButton2;
     RecyclerView recyclerView;
     List<String> titles;
     List<Integer> images ;
     Adapter adapter;
     RoomDB database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        imageButton2 = findViewById(R.id.imageButton2);
+
+        imageButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent intent = new Intent(view.getContext(), MainActivity2.class);
+               startActivity(intent);
+
+            }
+        });
+
+
         //remove the top bar at the beginning
         getSupportActionBar().hide();
         recyclerView = findViewById(R.id.recyclerView);
@@ -77,10 +94,11 @@ InternerStatus();
     public  void  InternerStatus(){
         registerReceiver(broadcastReceiver,new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
-    protected void onPause(){
-        super.onPause();
-        unregisterReceiver(broadcastReceiver);
-    }
+    //protected void onPause(){
+
+      //  super.onPause();
+     //   unregisterReceiver(broadcastReceiver);
+    //}
 
 
     //    **************************************** BroadCast *************************
