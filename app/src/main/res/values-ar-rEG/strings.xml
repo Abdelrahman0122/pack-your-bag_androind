@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">project</string>
+    <string name="team_members">أعضاء الفريق</string>
+    <string name="About">عن الفريق</string>
+    <string name="Pack">تطبيق اجلب الحقيبه هو برنامج لتنظيم الاشياء</string>
+</resources>

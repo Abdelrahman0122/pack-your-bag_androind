@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">project</string>
+    <string name="About">AboutUs</string>
+    <string name="team_members">Team Members:</string>
+    <string name="Pack">Pack your back is an App to manage your daily work Enjoy it!</string>
+
+
 </resources>
