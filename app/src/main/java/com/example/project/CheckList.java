@@ -52,13 +52,13 @@ public class CheckList extends AppCompatActivity {
         getSupportActionBar().setTitle(header);
 
 //        editText.findViewById(R.id.txtAdd);
-        btnAdd = findViewById(R.id.btnAdd);
+
         recyclerView = findViewById(R.id.recyclerView);
-        linearLayout = findViewById(R.id.linerLayout);
+
 
         database = RoomDB.getInstance(this);
         if (MyConstants.FALSE_STRING.equals(show)){
-            linearLayout.setVisibility(View.GONE);
+       //     linearLayout.setVisibility(View.GONE);
             itemsList = database.mainDao().getAllSelected(true);
 
         }else {

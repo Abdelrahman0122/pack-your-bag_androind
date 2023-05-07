@@ -1,15 +1,21 @@
 package com.example.project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -45,17 +51,33 @@ BroadcastReceiver broadcastReceiver = null;
     Adapter adapter;
     RoomDB database;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageButton2 = findViewById(R.id.imageButton2);
 
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("My notification","My notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager =getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
         imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
+            @SuppressLint("MissingPermission")
             public void onClick(View view) {
                Intent intent = new Intent(view.getContext(), MainActivity2.class);
                startActivity(intent);
+
+                NotificationCompat.Builder builder= new NotificationCompat.Builder(MainActivity.this,"My notification");
+                builder.setContentTitle("Hello?");
+                builder.setContentText("You enterd the AboutUs page ");
+                builder.setAutoCancel(true);
+                builder.setSmallIcon(R.drawable.img_1);
+                NotificationManagerCompat managerCompat=NotificationManagerCompat.from(MainActivity.this);
+                managerCompat.notify(1,builder.build());
+
 
             }
         });
@@ -117,6 +139,8 @@ InternerStatus();
         nBackPressed = System.currentTimeMillis();
 
     }
+
+
 
     private void persistAppData() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
